@@ -46,5 +46,5 @@ name = "bench"
 harness = false
 
 [patch.crates-io]
-reddsa = { git = "https://github.com/ZcashFoundation/reddsa", rev = "a164ca491060087e79feedc735b23cdc6f2845aa" }
+reddsa = { git = "https://github.com/ZcashFoundation/reddsa", rev = "28c2bfeae5d3bb5d686175c5f261a7c62296f6c9" }
 pasta_curves = { git = "https://github.com/upbqdn/pasta_curves", rev = "4b20f4643237207efccf300f1288d7007947e17e" }

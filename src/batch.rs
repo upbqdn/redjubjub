@@ -58,6 +58,20 @@ impl<'msg, M: AsRef<[u8]>> From<(VerificationKeyBytes<Binding>, Signature<Bindin
     }
 }
 
+impl<'msg, M: AsRef<[u8]>> From<(VerificationKey<SpendAuth>, Signature<SpendAuth>, &'msg M)>
+    for Item
+{
+    fn from((vk, sig, msg): (VerificationKey<SpendAuth>, Signature<SpendAuth>, &'msg M)) -> Self {
+        Self(reddsa::batch::Item::from_spendauth_key(vk.0, sig.0, msg))
+    }
+}
+
+impl<'msg, M: AsRef<[u8]>> From<(VerificationKey<Binding>, Signature<Binding>, &'msg M)> for Item {
+    fn from((vk, sig, msg): (VerificationKey<Binding>, Signature<Binding>, &'msg M)) -> Self {
+        Self(reddsa::batch::Item::from_binding_key(vk.0, sig.0, msg))
+    }
+}
+
 impl Item {
     /// Perform non-batched verification of this `Item`.
     ///

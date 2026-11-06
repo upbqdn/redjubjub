@@ -11,6 +11,13 @@ the library also provides `VerificationKeyBytes`, a [refinement] of a
 verification key. This allows the `VerificationKey` type to cache
 verification checks related to the verification key encoding.
 
+This fork accepts decoded `VerificationKey` values in batch item
+tuples, retaining their points through batch verification and single-item
+fallback. Binding keys convert directly from `jubjub::ExtendedPoint`, and
+SpendAuth keys convert to `jubjub::AffinePoint` without decompression. These
+ports preserve acceptance of small-order keys in RedJubjub itself;
+Sapling callers remain responsible for rejecting small-order SpendAuth keys.
+
 ## Examples
 
 Creating a `BindingSig`, serializing and deserializing it, and
